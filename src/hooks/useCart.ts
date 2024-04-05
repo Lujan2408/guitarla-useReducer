@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react"
 import { db } from '../data/db'
-import type { CartItem } from "../types/types"
+import type { CartItem, Guitar } from "../types/types"
 
 export const useCart = () => {
   
@@ -22,7 +22,7 @@ export const useCart = () => {
         localStorage.setItem('cart', JSON.stringify(cart))
     }, [cart]) 
 
-    function addToCart(item) {
+    function addToCart(item : Guitar) {
         // Detectar si un elemento existe en el carrito con findIndex
         const itemExists = cart.findIndex(guitar => guitar.id === item.id)
         
@@ -33,8 +33,8 @@ export const useCart = () => {
             updatedCart[itemExists].quantity++
             setCart(updatedCart)
         } else {
-            item.quantity = 1 // Agregando una propiedad nueva al objeto 
-            setCart([...cart, item])
+            const newItem : CartItem = {...item, quantity : 1} // Agregando una propiedad nueva al objeto 
+            setCart([...cart, newItem])
         }
     }
 
