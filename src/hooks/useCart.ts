@@ -10,7 +10,7 @@ export const useCart = () => {
     }
     
     // Agregando los elementos al state 
-    const [data, setData] = useState([])
+    const [data] = useState(db)
 
     // Carrito de compras
     const [cart, setCart] = useState(intialCart)
@@ -21,11 +21,6 @@ export const useCart = () => {
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart))
     }, [cart]) 
-
-    // Cuando el componente está listo los elementos se agregan al state 
-    useEffect(() => {
-        setData(db)
-    }, [])
 
     function addToCart(item) {
         // Detectar si un elemento existe en el carrito con findIndex
