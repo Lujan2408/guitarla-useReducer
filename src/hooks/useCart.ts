@@ -9,11 +9,8 @@ export const useCart = () => {
         return localStorageCart ? JSON.parse(localStorageCart) : []
     }
     
-    // Agregando los elementos al state 
-    const [data] = useState(db)
-
-    // Carrito de compras
-    const [cart, setCart] = useState(intialCart)
+    const [data] = useState(db) // Agregando los elementos al state 
+    const [cart, setCart] = useState(intialCart) // Carrito de compras
 
     const MAX_ITEMS = 8
     const MIN_ITEMS = 1
