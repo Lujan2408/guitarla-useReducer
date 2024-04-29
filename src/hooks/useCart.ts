@@ -1,5 +1,4 @@
 import { useState, useEffect, useMemo } from "react"
-import { db } from '../data/db'
 import type { CartItem, Guitar } from "../types/types"
 
 export const useCart = () => {
@@ -9,7 +8,6 @@ export const useCart = () => {
         return localStorageCart ? JSON.parse(localStorageCart) : []
     }
     
-    const [data] = useState(db) // Agregando los elementos al state 
     const [cart, setCart] = useState(intialCart) // Carrito de compras
 
     const MAX_ITEMS = 8
@@ -73,7 +71,6 @@ export const useCart = () => {
 
 
     return {
-        data,
         cart, 
         addToCart,
         removeFromCart,
