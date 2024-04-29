@@ -9,7 +9,6 @@ function App() {
     const { data, cart, addToCart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart, isEmpty, cartTotal } = useCart()
 
     const [state, dispatch] = useReducer(cartReducer, initialState)
-    console.log(state)
 
   return (
     <>
