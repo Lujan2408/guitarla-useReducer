@@ -30,7 +30,7 @@ function App() {
             {state.data.map((guitar) => (
                 <Guitar 
                     guitar={guitar}
-                    addToCart={addToCart}
+                    dispatch={dispatch}
                     key={guitar.id}
                 />
             ))}
