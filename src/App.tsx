@@ -6,20 +6,18 @@ import { cartReducer, initialState } from './reducers/cart-reducer'
 
 function App() {
 
-    const { cart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart, isEmpty, cartTotal } = useCart()
+    const { removeFromCart, increaseQuantity, decreaseQuantity, clearCart } = useCart()
 
     const [state, dispatch] = useReducer(cartReducer, initialState)
 
   return (
     <>
       <Header 
-        cart={cart}
+        cart={state?.cart}
         removeFromCart={removeFromCart}
         increaseQuantity={increaseQuantity}
         decreaseQuantity={decreaseQuantity}
         clearCart={clearCart}
-        isEmpty={isEmpty}
-        cartTotal={cartTotal}
       />
       
     <main className="container-xl mt-5">
@@ -27,7 +25,7 @@ function App() {
 
         <div className="row mt-5">
             {/* Iteramos sobre cada elemento para mostrarlo en pantalla, luego pasamos las propiedades */}
-            {state.data.map((guitar) => (
+            {state?.data.map((guitar) => (
                 <Guitar 
                     guitar={guitar}
                     dispatch={dispatch}

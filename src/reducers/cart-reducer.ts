@@ -26,16 +26,24 @@ export const cartReducer = (
     ) => {
     
     if(action.type === 'add-to-cart') {
+
         // Detectar si un elemento existe en el carrito con findIndex
-        const itemExists = state.cart.findIndex(guitar => guitar.id === action.payload.item.id)
+        const itemExists = state.cart.find(guitar => guitar.id === action.payload.item.id)
 
         let updatedCart : CartItem[] = []
                 
-        if (itemExists >= 0) { // Existe el elemento en el carrito 
-            if(state.cart[itemExists].quantity >= MAX_ITEMS) return
-            // Incrementar la cantidad de un articulo agregado 
-            updatedCart = [...state.cart]
-            updatedCart[itemExists].quantity++
+        if (itemExists) { // Existe el elemento en el carrito 
+            updatedCart = state.cart.map(item => {
+                if(item.id === action.payload.item.id) {
+                    if(item.quantity < MAX_ITEMS) {
+                        return {...item, quantity: item.quantity + 1}
+                    } else {
+                        return item
+                    }
+                } else {
+                    return item
+                }
+            })            
         } else {
             const newItem : CartItem = {...action.payload.item, quantity : 1} // Agregando una propiedad nueva al objeto 
             updatedCart = [...state.cart, newItem]
