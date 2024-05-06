@@ -10,24 +10,11 @@ export const useCart = () => {
     
     const [cart, setCart] = useState(intialCart) // Carrito de compras
 
-    const MAX_ITEMS = 8
     const MIN_ITEMS = 1
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart))
     }, [cart]) 
-
-    //Incrementar cantidad de items al carrito 
-    function increaseQuantity(id : Guitar['id']) {
-        const updatedCart = cart.map( item => {
-            if(item.id === id && item.quantity < MAX_ITEMS) {
-                return {...item, quantity: item.quantity + 1 }
-            }
-            return item
-        })
-        
-        setCart(updatedCart)
-    }
 
     function decreaseQuantity(id : Guitar['id']) {
         const updatedCart = cart.map( item => {
@@ -46,7 +33,6 @@ export const useCart = () => {
 
     return {
         cart,
-        increaseQuantity,
         decreaseQuantity,
         clearCart
     }
