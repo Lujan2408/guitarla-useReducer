@@ -1,18 +1,16 @@
 import { useMemo, Dispatch } from "react"
-import { CartItem, Guitar} from "../types/types"
+import { CartItem } from "../types/types"
 import type { CartActions } from "../reducers/cart-reducer"
 
 type HeaderProps = {
     cart: CartItem[]
     dispatch: Dispatch<CartActions>
-    decreaseQuantity: (id : Guitar['id']) => void
     clearCart: () => void
 }
 
 const Header = ({
     cart, 
     dispatch,
-    decreaseQuantity, 
     clearCart
 } : HeaderProps) => {
 
@@ -68,7 +66,7 @@ const Header = ({
                                                         <button
                                                             type="button"
                                                             className="btn btn-dark"
-                                                            onClick={() => decreaseQuantity(guitar.id)}
+                                                            onClick={() => dispatch({type: 'decrease-quantity', payload: {id: guitar.id}})}
                                                         >
                                                             -
                                                         </button>
