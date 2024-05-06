@@ -90,7 +90,7 @@ const Header = ({ cart, dispatch, } : HeaderProps) => {
                                     <p className="text-end">Total pagar: <span className="fw-bold">${cartTotal}</span></p>
                                     <button 
                                         className="btn btn-dark w-100 mt-3 p-2"
-                                        // onClick={dispatch({type: 'clear-cart'})}
+                                        onClick={() => dispatch({type: 'clear-cart'})}
                                     >
                                         Vaciar Carrito
                                     </button>
